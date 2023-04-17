@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import "./css-files/Signup.css";
 import { Link /*, redirect */ } from "react-router-dom";
-import {
+/*import {
   Box,
   Avatar,
   TextField,
   Button,
   Typography,
   Link as Nv,
-} from "@material-ui/core";
+} from "@material-ui/core";*/
 import axios from "axios";
 
 function SignUp() {
@@ -20,9 +20,10 @@ function SignUp() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showOTPField, setShowOTPField] = useState(false);
   const [otpResponse, setOtpResponse] = useState(false);
+  // const counter = React.useRef(59);
  
 //test
-  const [count,setCount] = useState(1);
+ // const [count,setCount] = useState(1);
 //test
 
   const [otp, setOTP] = useState("");
@@ -50,7 +51,7 @@ function SignUp() {
               alert(erro?.response?.data?.mesg);
             }
           );
-          //initiateOTP()
+         
         } else {
           alert("Password did not match");
         }
@@ -60,14 +61,22 @@ function SignUp() {
     } else {
       alert("Invalid Mobile No");
     }
-    /*console.log(`Name: ${name}, Email: ${email}, Mobile: ${mobile}, Password: ${password}, Confirm Password: ${confirmPassword}, OTP: ${otp}`);*/
   };
-  const [counter, setCounter] = React.useState(59);
+
+
+
+ /* const [counter, setCounter] = React.useState(59);
   React.useEffect(() => {
-    const timer =
-      counter > 0 && setInterval(() => setCounter(counter - 1), 1000);
-    return () => clearInterval(timer);
-  }, [counter]);
+    const timer = setInterval(() => {
+      setCounter(prevCount => prevCount - 1); // <-- Change this line!
+      if(counter === 0) {
+        clearInterval(timer);
+      }
+    }, 1000);
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);*/
 
   // const blockAccount = (event) => {
   //   // event.preventDefault();
@@ -83,14 +92,6 @@ function SignUp() {
   //     window.location.replace("/");
   //   });
   // };
-
-
-
-
-
-
-
-
   
   const initiateOTP = (event) => {
     // event.preventDefault();
@@ -102,6 +103,8 @@ function SignUp() {
       },
     }).then((response) => {
       setShowOTPField(true);
+     // setCounter(59)
+      // counter.current = 59
       setOtpResponse(response?.data);
     });
   };
@@ -124,7 +127,7 @@ function SignUp() {
      });
    };
 
-const blockuser = (event) =>{
+/*const blockuser = (event) =>{
   axios({
     method: 'post',
     url: `${BASE_URL}/blockuser`,
@@ -138,7 +141,7 @@ const blockuser = (event) =>{
   }, erro =>{
     alert(erro?.response?.data?.mesg)
   });
-}
+}*/
 
 
 
@@ -159,10 +162,17 @@ const blockuser = (event) =>{
       (erro) => {
         
         alert("Invalid otp");
+      //  setCount(count+1);
+        //if(count===3){
+      //    blockuser();
+       // }
       }
     );
     //console.log(`OTP: ${otp} verified`);
   };
+  // const getCounter =()=>{
+  //   return counter.current
+  // }
 
   return (
     <div id="signup-body">
@@ -253,7 +263,7 @@ const blockuser = (event) =>{
                 onChange={(event) => setOTP(event.target.value)}
                 required
               />
-              <Box mt={3}>
+             {/* <Box mt={3}>
                 <Typography fontWeight={400} align="center" color="white">
                   {" "}
                   Resend OTP in{" "}
@@ -262,7 +272,7 @@ const blockuser = (event) =>{
                     00:{counter}
                   </span>{" "}
                 </Typography>
-              </Box>
+        </Box>*/}
             </div>
             <button type="submit" className="btn-signup">
               Verify OTP

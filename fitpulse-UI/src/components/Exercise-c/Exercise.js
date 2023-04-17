@@ -1,6 +1,6 @@
 import React from 'react';
 import './Exercise.css';
-
+import { Link /*, redirect */ } from "react-router-dom";
 const Exercise = () => {
   return (
     <>
@@ -19,7 +19,7 @@ const Exercise = () => {
         <br></br>
         <h3 className="text">4 Weeks Challenge</h3>
         <br></br>
-        <button className="button">Start Now!</button>
+        <Link to="/Beginner"><button className="button">Start Now!</button></Link>
       </div>
 
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

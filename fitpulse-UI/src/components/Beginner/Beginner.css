@@ -1,0 +1,74 @@
+.beginner
+{
+  background-color: black;
+}
+.beginner-h1
+{
+  color: rgb(255, 255, 255);
+  font-family: 'Times New Roman', Times, serif;
+  margin-top: -15px;
+}
+.beginner-h2
+{
+  color:#ffffff;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  margin-top: 10px;
+}
+.beginner-p
+{
+  color:rgb(18, 17, 17);
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-weight: 100;
+  margin-top: 10px;
+}
+
+ul
+{
+  margin: 50px;
+}
+.beginner-box
+{
+  margin:50px; 
+  border:1px  rgb(255, 255, 255);
+  border-radius: 15px;
+  padding: 20px 15px;
+  background-color: white;
+  color:#F9004D;
+  display: inline-block;
+  margin-top: 50px;
+  width: 20%;
+}
+
+.beginner-box h3
+{
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 25px;
+}
+
+.beginner-box h4
+{
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 18px;
+  margin-bottom: 9px;
+}
+
+.beginner-box h5
+{
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 21px;
+}
+
+.beginner-video
+{
+  border:20px;
+  margin:0;
+  padding: 10px;
+  margin-top: 18px;
+}
+
+.rest-day
+{
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 48px;
+  color: #F9004D;
+}

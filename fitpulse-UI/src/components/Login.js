@@ -11,6 +11,7 @@ function Login() {
   const [otpResponse, setOtpResponse] = useState(false);
 
   const [otp, setOTP] = useState("");
+  const [check, setcheck] = useState(1);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -32,14 +33,33 @@ function Login() {
       .then(
         (response) => {
           console.log(response);
-          initiateOTP();
+         // initiateOTP();
+         checkblockuser();
         },
         (error) => {
           alert("Invalid details");
         }
       );
   };
- 
+ const checkblockuser=()=>{
+  axios({
+    method: 'post',
+    url: `${BASE_URL}/checkblockuser`,
+    data: {
+      emailuser:email,
+    }
+  }).then(response=>{
+    
+   alert("The user is deleted from blockuser")
+  },
+  (error) => {
+    //initiateOTP();
+    alert("the user is not found in blocked")
+  });
+ }
+
+
+
 
   const initiateOTP = (event) => {
     // event.preventDefault();
@@ -57,6 +77,25 @@ function Login() {
    };
  
 
+
+
+
+   const blockuser = (event) =>{
+    axios({
+      method: 'post',
+      url: `${BASE_URL}/blockuser`,
+      data: {
+        email: email,
+        //mobileNumber: mobile,
+      }
+    }).then(response=>{
+      alert("The user is blocked")
+      window.location.replace('/Login') 
+    }, erro =>{
+      alert(erro?.response?.data?.mesg)
+    });
+  }
+
   const handleVerifyOTP = (event) => {
     event.preventDefault();
     axios({
@@ -70,6 +109,11 @@ function Login() {
       window.location.replace("/");
     }, erro =>{
       alert("Invalid otp")
+      setcheck(check+1)
+      if(check===3){
+        blockuser();
+
+      }
     });
     //console.log(`OTP: ${otp} verified`);
   };

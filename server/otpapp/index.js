@@ -14,6 +14,7 @@ const cookieparser = require("cookie-parser");
 //test
 
 const blockuser = require("./blockuser");
+const moment = require('moment');
 //test
 
 app.use(cors({ credentials: true, origin: "http://localhost:3000" })); //Cross-origin resource sharing 
@@ -129,8 +130,9 @@ app.post("/blockuser", async (req, res) => {
   console.log("block User called");
   const {email} = req.body;
   console.log(email);
+  const blockdate = moment();
   try {
-    await blockuser.create({email}).then(
+    await blockuser.create({email,blockdate}).then(
       (response) => {
         res.json({ status: "ok", message: "Successfully blocked user" });
       },
@@ -143,6 +145,52 @@ app.post("/blockuser", async (req, res) => {
   }
 });
 //test
+
+/*app.post("/checkblockuser",async(req,res)=>{
+  const {useremail} = req.body;
+  try {
+    await blockuser.find({email:useremail}).then((response)=>{
+      console.log("i am in await")
+      console.log(useremail)
+      const nowdate = moment();
+      console.log("I am email above")
+      console.log( response[0].email)
+      const blockeddate =  response[0].blockdate
+      const time = nowdate.diff(blockeddate,'hours')
+      //console.log(time)
+      if(time>4){
+        console.log("I am in side 4hrs")
+        blockuser.deleteOne({email:"blockdate@gmail.com"})
+        res.json({ status: "ok", message: "Successfully deleted the user" });
+      }else{
+        console.log("I am less than 4 hours")
+      }
+    },(err)=>{
+      console.log("I am the error in try")
+    });
+  }catch(error){
+   //console.log("I am the error in catch")
+   res.json({ status: "ok", message: "Successfully deleted the user" });
+  }
+});*/
+
+
+
+
+app.post("/checkblockuser",async(req,res)=>{
+  const {emailuser} = req.body
+  try {
+    await blockuser.find({ email: emailuser }).then((response) => {
+      console.log(response);
+      blockuser.deleteOne({email:emailuser});
+      res.json({ status: "ok", message: "deleted" });
+    },(error) => {
+      res.status(400).send(error);
+    });
+  } catch (error) {
+    res.status(500).send(error);
+  }
+})
 
 
 
@@ -303,6 +351,9 @@ app.post("/verifydata", async (req, res) => {
 //   res.status(500).send(error)
 // }
 // })
+
+
+
 
 app.post("/createBooking", async (req, res) => {
   console.log("Create Booking called");

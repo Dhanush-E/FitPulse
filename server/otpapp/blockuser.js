@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 const schema = mongoose.Schema({
    
-    email : 'String'
+    email : 'String',
+    blockdate:'Date',
    
 })
 const blockmodel = mongoose.model('blockmodel',schema);
