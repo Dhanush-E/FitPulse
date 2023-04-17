@@ -78,20 +78,7 @@ function SignUp() {
     };
   }, []);*/
 
-  // const blockAccount = (event) => {
-  //   // event.preventDefault();
-  //   console.log("blocked account is called, ", email);
-  //   axios({
-  //     method: "post",
-  //     url: `${BASE_URL}/blockUser`,
-  //     data: {
-  //       email: email,
-  //     },
-  //   }).then((response) => {
-  //     alert("three consecutive failures, ID blocked!");
-  //     window.location.replace("/");
-  //   });
-  // };
+ 
   
   const initiateOTP = (event) => {
     // event.preventDefault();
@@ -127,21 +114,6 @@ function SignUp() {
      });
    };
 
-/*const blockuser = (event) =>{
-  axios({
-    method: 'post',
-    url: `${BASE_URL}/blockuser`,
-    data: {
-      email: email,
-      //mobileNumber: mobile,
-    }
-  }).then(response=>{
-    alert("The user is blocked")
-    window.location.replace('/') 
-  }, erro =>{
-    alert(erro?.response?.data?.mesg)
-  });
-}*/
 
 
 

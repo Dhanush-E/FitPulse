@@ -126,10 +126,35 @@ app.post("/verifyotplogin", async (req, res) => {
 
 
 //test
+app.post("/updateblocktime", async (req, res) => {
+  const { email} = req.body;
+  time = moment()
+  try {
+    await blockuser.updateOne({email:email},{
+      $set:{
+        blockdate:time
+      }
+    }).then(
+      (response) => {
+        res.json({ status: "ok", message: "Time Updated" });
+      },
+      (err) => {
+        res.status(400).json({ status: "bad request" });
+      }
+    );
+  } catch (error) {
+   // res.status(500).send(error);
+  }
+});
+
+
+
+
+
+
 app.post("/blockuser", async (req, res) => {
   console.log("block User called");
   const {email} = req.body;
-  console.log(email);
   const blockdate = moment();
   try {
     await blockuser.create({email,blockdate}).then(
@@ -146,54 +171,50 @@ app.post("/blockuser", async (req, res) => {
 });
 //test
 
-/*app.post("/checkblockuser",async(req,res)=>{
-  const {useremail} = req.body;
+app.post("/verifyblock", async (req, res) => {
+  const { email } = req.body;
+  //console.log(email);
   try {
-    await blockuser.find({email:useremail}).then((response)=>{
-      console.log("i am in await")
-      console.log(useremail)
-      const nowdate = moment();
-      console.log("I am email above")
-      console.log( response[0].email)
-      const blockeddate =  response[0].blockdate
-      const time = nowdate.diff(blockeddate,'hours')
-      //console.log(time)
-      if(time>4){
-        console.log("I am in side 4hrs")
-        blockuser.deleteOne({email:"blockdate@gmail.com"})
-        res.json({ status: "ok", message: "Successfully deleted the user" });
-      }else{
-        console.log("I am less than 4 hours")
+    await blockuser.find({ email: email }).then((response) => {
+      const list = response.filter((user) => user.email == email);
+      console.log("response email", list);
+      if (list.length > 0) {
+        res.status(400).json({ mesg: "Mail already exists" });
+      } else {
+        res.json({ status: "ok", message: "new block" });
       }
-    },(err)=>{
-      console.log("I am the error in try")
-    });
-  }catch(error){
-   //console.log("I am the error in catch")
-   res.json({ status: "ok", message: "Successfully deleted the user" });
-  }
-});*/
-
-
-
-
-app.post("/checkblockuser",async(req,res)=>{
-  const {emailuser} = req.body
-  try {
-    await blockuser.find({ email: emailuser }).then((response) => {
-      console.log(response);
-      blockuser.deleteOne({email:emailuser});
-      res.json({ status: "ok", message: "deleted" });
-    },(error) => {
-      res.status(400).send(error);
     });
   } catch (error) {
     res.status(500).send(error);
   }
+});
+
+
+
+
+
+app.post("/checkblock",async(req,res)=>{
+  const {email} = req.body;
+  try{
+    await blockuser.find({email:email}).then((response)=>{
+      const nowdate = moment();
+      const time = nowdate.diff(response[0].blockdate,'hours',true)
+      console.log(time)
+      if(time>4){
+        res.json({ status: "ok", message: "user block time is completed" });
+      }else{
+        res.status(400).json({ status: "bad request" });
+      }
+     
+    },(error)=>{
+      res.status(400).json({ status: "bad request" });
+    })
+  
+  }catch{
+    //res.status(400).json({ status: "bad request" });
+    res.json({ status: "ok", message: "User not in block collection" });
+  }
 })
-
-
-
 
 app.post("/forgotpassword", async (req, res) => {
   const { email } = req.body;

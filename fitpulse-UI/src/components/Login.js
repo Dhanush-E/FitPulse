@@ -9,9 +9,9 @@ function Login() {
   const BASE_URL = "http://localhost:3007";
   const [showOTPField, setShowOTPField] = useState(false);
   const [otpResponse, setOtpResponse] = useState(false);
+  const [count,setCount] = useState(1);
 
   const [otp, setOTP] = useState("");
-  const [check, setcheck] = useState(1);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -33,32 +33,15 @@ function Login() {
       .then(
         (response) => {
           console.log(response);
-         // initiateOTP();
-         checkblockuser();
+         //initiateOTP();
+         checkblock();
         },
         (error) => {
           alert("Invalid details");
         }
       );
   };
- const checkblockuser=()=>{
-  axios({
-    method: 'post',
-    url: `${BASE_URL}/checkblockuser`,
-    data: {
-      emailuser:email,
-    }
-  }).then(response=>{
-    
-   alert("The user is deleted from blockuser")
-  },
-  (error) => {
-    //initiateOTP();
-    alert("the user is not found in blocked")
-  });
- }
-
-
+ 
 
 
   const initiateOTP = (event) => {
@@ -78,23 +61,67 @@ function Login() {
  
 
 
+const blockuser=()=>{
+  axios({
+    method:'post',
+    url: `${BASE_URL}/blockuser`,
+    data:{
+      email:email
+    }
+  }).then(response=>{
+    alert("You reached max attemepts you are blocked for 4 hrs")
+    window.location.replace("/Login")
+  })
+}
 
 
-   const blockuser = (event) =>{
+const updateblocktime=()=>{
+  axios({
+    method:'post',
+    url: `${BASE_URL}/updateblocktime`,
+    data:{
+      email:email
+    }
+  }).then(response=>{
+    alert("Your blocked")
+    window.location.replace("/Login")
+  })
+}
+
+
+const verifyblock=()=>{
     axios({
-      method: 'post',
-      url: `${BASE_URL}/blockuser`,
-      data: {
-        email: email,
-        //mobileNumber: mobile,
+      method:'post',
+      url: `${BASE_URL}/verifyblock`,
+      data:{
+        email:email
       }
     }).then(response=>{
-      alert("The user is blocked")
-      window.location.replace('/Login') 
-    }, erro =>{
-      alert(erro?.response?.data?.mesg)
-    });
-  }
+      blockuser();
+    },error=>{
+      updateblocktime();
+    }
+    )
+}
+
+
+const checkblock=()=>{
+  axios({
+    method:'post',
+    url: `${BASE_URL}/checkblock`,
+    data:{
+      email:email
+    }
+  }).then(response=>{
+    alert("mail id allowed to login")
+   initiateOTP();
+  },error=>{
+    alert("Mail id is Blocked, try after some time")
+  })
+}
+
+
+
 
   const handleVerifyOTP = (event) => {
     event.preventDefault();
@@ -109,10 +136,10 @@ function Login() {
       window.location.replace("/");
     }, erro =>{
       alert("Invalid otp")
-      setcheck(check+1)
-      if(check===3){
-        blockuser();
-
+      setCount(count+1)
+      if(count===3){
+        verifyblock();
+       // blockuser();
       }
     });
     //console.log(`OTP: ${otp} verified`);
