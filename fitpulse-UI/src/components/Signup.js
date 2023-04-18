@@ -23,7 +23,7 @@ function SignUp() {
   // const counter = React.useRef(59);
  
 //test
- // const [count,setCount] = useState(1);
+ const [count,setCount] = useState(1);
 //test
 
   const [otp, setOTP] = useState("");
@@ -132,12 +132,19 @@ function SignUp() {
         initiateCreateUser();
       },
       (erro) => {
-        
-        alert(erro?.response?.data?.mesg);
-      //  setCount(count+1);
-        //if(count===3){
-      //    blockuser();
-       // }
+        if(erro?.response?.data?.mesg === "OTP expired"){
+          alert("The old OTP is expired new otp will be sent now")
+          setCount(1)
+          initiateOTP()
+        }else{
+          alert("I am here")
+          alert(erro?.response?.data?.mesg)
+        setCount(count+1)
+        if(count===3){
+          alert("User Creation failed Due to max otp fails, try agin")
+          window.location.replace("/Signup")
+        }
+      }
       }
     );
     //console.log(`OTP: ${otp} verified`);

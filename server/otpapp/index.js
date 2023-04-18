@@ -73,7 +73,7 @@ app.post("/verifyotp", async (req, res) => {
           console.log("Validated successfully", otp);
           res.json({ mesg: "Validated successfully" });
         }else{
-          res.status(400).json({ mesg: "OTP Expired" });
+          res.status(400).json({ mesg: "OTP expired" });
         }
        
       } else {
