@@ -48,8 +48,10 @@ app.post("/sendotp", async (req, res) => {
     digits: true,
   });
   //console.log(otp);
+  const  gendate = moment()
+  console.log(gendate)
   try {
-    await postModel.create({ otp, mobileNumber }).then((response) => {
+    await postModel.create({ otp, mobileNumber, gendate }).then((response) => {
       sendOTP(otp, mobileNumber);
       res.json({ mesg: "OTP sent successfully", id: response.id });
     });
@@ -60,12 +62,20 @@ app.post("/sendotp", async (req, res) => {
 app.post("/verifyotp", async (req, res) => {
   const { otp, id } = req.body;
   console.log(otp, id);
+  
   try {
     await postModel.findById(id).then((response) => {
       console.log("response", response);
       if (response && response.otp == otp) {
-        console.log("Validated successfully", otp);
-        res.json({ mesg: "Validated successfully" });
+        const nowotptime = moment()
+        const time = nowotptime.diff(response.gendate,'minutes',true)
+        if(time<2){
+          console.log("Validated successfully", otp);
+          res.json({ mesg: "Validated successfully" });
+        }else{
+          res.status(400).json({ mesg: "OTP Expired" });
+        }
+       
       } else {
         res.status(400).json({ mesg: "Invalid OTP" });
       }
@@ -93,8 +103,10 @@ app.post("/sendotplogin", async (req, res) => {
     digits: true,
   });
   //console.log(otp);
+  const gendate = moment()
+  console.log(gendate)
   try {
-    await postModel.create({ otp, mobileNumber }).then((response) => {
+    await postModel.create({otp,mobileNumber,gendate}).then((response) => {
       sendOTP(otp, mobileNumber);
       res.json({ mesg: "OTP sent successfully", id: response.id });
     });
@@ -110,8 +122,16 @@ app.post("/verifyotplogin", async (req, res) => {
     await postModel.findById(id).then((response) => {
       console.log("response", response);
       if (response && response.otp == otp) {
-        console.log("Validated successfully", otp);
-        res.json({ mesg: "Validated successfully" });
+        const nowotptime = moment()
+        const time = nowotptime.diff(response.gendate,'minutes',true)
+        console.log(time)
+        if(time<2){
+          console.log("Validated successfully", otp);
+          res.json({ mesg: "Validated successfully" });
+        }else{
+          res.status(400).json({ mesg: "OTP expired" });
+        }
+       
       } else {
         res.status(400).json({ mesg: "Invalid OTP" });
       }

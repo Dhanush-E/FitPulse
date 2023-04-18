@@ -135,12 +135,19 @@ const checkblock=()=>{
     }).then(response=>{
       window.location.replace("/");
     }, erro =>{
-      alert("Invalid otp")
+      //alert("Invalid otp")
+      if(erro?.response?.data?.mesg === "OTP expired"){
+        alert("The old OTP is expired new otp will be sent now")
+        setCount(1)
+        initiateOTP()
+      }else{
+        alert(erro?.response?.data?.mesg)
       setCount(count+1)
       if(count===3){
         verifyblock();
        // blockuser();
       }
+    }
     });
     //console.log(`OTP: ${otp} verified`);
   };

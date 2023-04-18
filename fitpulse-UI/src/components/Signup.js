@@ -133,7 +133,7 @@ function SignUp() {
       },
       (erro) => {
         
-        alert("Invalid otp");
+        alert(erro?.response?.data?.mesg);
       //  setCount(count+1);
         //if(count===3){
       //    blockuser();
