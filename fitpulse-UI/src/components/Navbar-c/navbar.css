@@ -55,7 +55,7 @@
 
   .navbar li a:hover
   {
-    color:/*white;*/#f9004d;
+    color:/*white;*//*#f9004d*/teal;
     transition: all 0.4s ease 0s;   
   }
 
@@ -71,7 +71,7 @@
 
   .navbar button
   {
-    float: right;
+    /*float: right;*/
     font-size: medium;
     margin-top: 4px;
     height: px;
@@ -102,6 +102,6 @@
   }
 
   #nav-login-singup:hover{
-      color: #f9004d;
+      color: /*#f9004d*/teal;
   }
   /* -------------------------    Header End     ------------------------- */

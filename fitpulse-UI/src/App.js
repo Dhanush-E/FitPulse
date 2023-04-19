@@ -8,8 +8,10 @@ import Contact from './components/contact-c/Contact';
  import Bookingconfirm from './components/Bookingconfirm';
  import Forgotpassword from './components/Forgotpassword';
 import About from './components/About-Page/About-Page';
-//import Beginner from './components/Beginner/Beginner';
+import Beginner from './components/Beginner/Beginner';
 //import Contact from './components/Contact-Page/Contact';
+import Pro from './components/Pro/Pro';
+import Intermediate from './components/Intermediate/Intermediate'
 
 function App() {
   return (
@@ -24,7 +26,9 @@ function App() {
               <Route path="/Bookingconfirm" element={<Bookingconfirm/>}/>
               <Route path='/Forgotpassword' element={<Forgotpassword/>}/>
               <Route path='/About' element={<About/>}/>
-              {/*<Route path='/Beginner' element={<Beginner/>}/>*/}
+              <Route path='/Beginner' element={<Beginner/>}/>
+              <Route path='/Intermediate' element={<Intermediate/>}/>
+              <Route path='/Pro' element={<Pro/>}/>
               
     </Routes>
   );

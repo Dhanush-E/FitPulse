@@ -54,7 +54,7 @@
 
   .about-text span
   {
-    color: #F9004D;
+    color:/* #F9004D*/teal;
     font-size: 26px;
     font-family: 'Times New Roman', Times, serif;
   }
@@ -71,7 +71,7 @@
 
   .about button
   {
-    background: #F9004D;
+    background: /*#F9004D*/teal;
     color: white;
     text-decoration: none;
     border: 2px solid transparent;
@@ -84,7 +84,7 @@
   .about button:hover
   {
     background: transparent;
-    border: 2px solid #F9004D;
+    border: 2px solid /*#F9004D*/teal;
     cursor: pointer;
   }
 

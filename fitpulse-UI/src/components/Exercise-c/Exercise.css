@@ -42,7 +42,7 @@
     margin-bottom: 20px;
     border-radius: 20px;
     font-family: 'Times New Roman', Times, serif;
-    border: 2px solid #F9004D;
+    border: 2px solid /*#F9004D*/ teal;
     border-bottom: 5px;
     text-align: center;
     align-items: center;
@@ -105,18 +105,29 @@
 
   .button
   {
-    color:rgb(255, 255, 255);
-    background-color:/*#d4d4d4*/#F9004D;
+    /*color:rgb(255, 255, 255);
+    background-color:/*#F9004D teal;
     border-radius: 30px;
     padding: 8px 16px;
-    border: none;
+    border: none;*/
+    background: /*#F9004D*/teal;
+    color: white;
+    text-decoration: none;
+    border: 2px solid transparent;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 30px;
+    transition: .4s;
   }
 
   .button:hover
   {
-    color:/*white*/black;
-    background-color:/*#ed3a72*/white;
-    border-radius: 30px;
+    /*color:/*whiteblack;
+    background-color:/*#ed3a72white;
+    border-radius: 30px;*/
+    background: transparent;
+    border: 2px solid /*#F9004D*/teal;
+    cursor: pointer;
   }
   
   .text

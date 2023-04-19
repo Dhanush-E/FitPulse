@@ -312,7 +312,7 @@
 }
 
 .footer-contact button {
-  background: #f9004d;
+  background: /*#f9004d*/teal;
   color: white;
   text-decoration: none;
   border: 2px solid transparent;
@@ -325,7 +325,7 @@
 
 .footer-contact button:hover {
   background: black;
-  border: 2px solid #f9004d;
+  border: 2px solid /*#f9004d*/teal;
   cursor: pointer;
 }
 

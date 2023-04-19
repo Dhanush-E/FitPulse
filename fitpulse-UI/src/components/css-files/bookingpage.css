@@ -22,7 +22,7 @@
 
 #gymbookingheading{
     font-size: 23px;
-    color: /*teal*/#f9004d;
+    color: /*#f9004d*/teal;
     padding-top: 8px;
     text-align: center;
 }
@@ -81,7 +81,7 @@
 }
 
 #gymbookingbtn {
-    background-color:/*	#008080 ;*/ #f9004d;
+    background-color:/* #f9004d*/teal;
     color: #fff;
     padding: 10px 20px;
     border-radius: 5px;
@@ -93,6 +93,6 @@
   #gymbookingbtn:hover {
     transform: translateY(-2px);
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
-    background-color: /*#0e7b87;*/#e82b67;
+    background-color: /*#e82b67*/teal;
   }
   

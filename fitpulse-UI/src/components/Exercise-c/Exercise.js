@@ -32,7 +32,7 @@ const Exercise = () => {
         <br></br>
         <h3 className="text">6 Weeks Challenge</h3>
         <br></br>
-        <button className="button">Start Now!</button>
+        <Link to="/Intermediate"><button className="button">Start Now!</button></Link>
       </div>
 
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -45,7 +45,7 @@ const Exercise = () => {
         <br></br>
         <h3 className="text">8 Weeks Challenge</h3>
         <br></br>
-        <button className="button">Start Now!</button>
+        <Link to="/Pro"><button className="button">Start Now!</button></Link>
       </div>
     </div>
 

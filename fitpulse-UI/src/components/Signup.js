@@ -137,7 +137,7 @@ function SignUp() {
           setCount(1)
           initiateOTP()
         }else{
-          alert("I am here")
+         // alert("I am here")
           alert(erro?.response?.data?.mesg)
         setCount(count+1)
         if(count===3){

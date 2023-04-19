@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
+import { Link } from "react-router-dom";
 import logoimage from "./Images/final_logo.jpg";
 import { FaInstagram, FaFacebook, FaLinkedin, FaYoutube } from "react-icons/fa";
 import "./footer.css";
@@ -118,7 +119,7 @@ export class Footer extends Component {
                     <a href="#">fitpulse.fp@gmail.com</a>
                   </li>
                   <br></br>
-                  <button type="button">Email Us</button>
+                 <Link to="/contact"> <button type="button">Email Us</button></Link>
                 </ul>
               </div>
             </div>

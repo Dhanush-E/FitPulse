@@ -153,7 +153,7 @@
 
  .service__box:hover {
     transform: translateY(5px);
-    background-image: linear-gradient(90deg, #f61b10, #ef0963);
+    background-image: linear-gradient(90deg, /*#f61b10, #ef0963*/teal,rgb(7, 187, 187));
  }
 
  .service__box:hover .icon {
@@ -170,7 +170,7 @@
     font-weight: 400;
     margin-bottom: 23px;
     display: inline-flex;
-    color: #f9004d;
+    color: /*#f9004d;*/teal;
  }
 
  p.service_text.p_color {

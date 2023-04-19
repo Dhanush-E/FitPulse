@@ -25,7 +25,7 @@ body {
 }
 
 .about-section span {
-  color: #f9004d;
+  color: /*#f9004d*/teal;
   font-size: 26px;
   font-family: "Times New Roman", Times, serif;
 }
@@ -58,8 +58,9 @@ body {
   .about-founders
   {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    justify-content: center;
+   justify-content: center;
   }
 
   .about-row
@@ -83,7 +84,7 @@ body {
 
   .founder-icon
   {
-      color: #f9004d;
+      color: /*#f9004d*/teal;
       font-size: 2rem;
       margin-left: 5px;
   }

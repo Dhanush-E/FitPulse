@@ -12,6 +12,7 @@ function Login() {
   const [count,setCount] = useState(1);
 
   const [otp, setOTP] = useState("");
+  const [resend,setResend] = useState(1);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -113,7 +114,7 @@ const checkblock=()=>{
       email:email
     }
   }).then(response=>{
-    alert("mail id allowed to login")
+    //alert("mail id allowed to login")
    initiateOTP();
   },error=>{
     alert("Mail id is Blocked, try after some time")
@@ -135,11 +136,19 @@ const checkblock=()=>{
     }).then(response=>{
       window.location.replace("/");
     }, erro =>{
-      //alert("Invalid otp")
+     
       if(erro?.response?.data?.mesg === "OTP expired"){
-        alert("The old OTP is expired new otp will be sent now")
-        setCount(1)
-        initiateOTP()
+        setResend(resend+1)
+        
+        if(resend===3){
+          alert("Resend OTP limit reached, Try again later")
+          verifyblock()
+        }else{
+          alert("The old OTP is expired new otp will be sent now")
+          setCount(1)
+          initiateOTP()
+        }
+      
       }else{
         alert(erro?.response?.data?.mesg)
       setCount(count+1)
