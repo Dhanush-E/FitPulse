@@ -20,5 +20,8 @@
     "start": "nodemon index.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "html-webpack-plugin": "^5.5.1"
+  }
 }

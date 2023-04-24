@@ -27,7 +27,7 @@ function SignUp() {
 //test
 
   const [otp, setOTP] = useState("");
-  /*const [otpemail, setOTPemail] = useState("");*/
+  // /const [otpemail, setOTPemail] = useState("");/ 
 
   const handleSubmit = (event) => {
     event.preventDefault();

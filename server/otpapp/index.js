@@ -108,6 +108,7 @@ app.post("/sendotplogin", async (req, res) => {
   try {
     await postModel.create({otp,mobileNumber,gendate}).then((response) => {
       sendOTP(otp, mobileNumber);
+
       res.json({ mesg: "OTP sent successfully", id: response.id });
     });
   } catch (error) {
@@ -476,14 +477,22 @@ app.post("/verifydatabooking", async (req, res) => {
 }*/
 
 app.get("/getcookie", (req, res) => {
-  const token = req.cookies;
-  res.json(token);
+  const token = req.cookies.tokens;
+  console.log(token);
+  if (token != null) {
+    res.json(token);
+  } else {
+    res.json(null); 
+  }
 });
 app.get("/logout", (req, res) => {
   res.clearCookie("tokens");
   res.send("cookie cleared");
 });
+// app.get("/BookingPagelogincheck", auth, (req, res) => {
+//   // res.render("BookingPage");
 
+// });
 app.listen(3007, () => {
   console.log("App listening to 3007");
 });

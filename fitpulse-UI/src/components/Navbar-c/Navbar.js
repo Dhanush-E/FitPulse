@@ -14,8 +14,8 @@ export default function Navbar() {
       await axios
         .get("http://localhost:3007/getcookie", { withCredentials: true })
         .then((res) => {
-          console.log(res);
-          setUemail(res.data.tokens);
+          console.log(res.data);
+          setUemail(res.data);
         });
     }
     fetchdata();
@@ -55,7 +55,9 @@ export default function Navbar() {
           {uemail != null ? (
             <Link onClick={Logout}>Logout</Link>
           ) : (
-            <Link to="/Login" id="nav-login-singup">Login/SignUp</Link>
+            <Link to="/Login" id="nav-login-singup">
+              Login/SignUp
+            </Link>
           )}
 
           {/*button type = "button">Login / Sign up</button*/}
