@@ -9,7 +9,7 @@ const createUser = require("./createUser");
 const createBooking = require("./createBooking");
 const cookieparser = require("cookie-parser");
 //const usermodel = require("./createUser");
-
+const generateOTP = require('my-otp-generator')
 
 //test
 
@@ -96,12 +96,12 @@ app.post("/sendotplogin", async (req, res) => {
     res.status(500).send(error);
   }
 
-  const otp = otpGenerator.generate(6, {
+  const otp =  generateOTP(6) /*otpGenerator.generate(6, {
     upperCaseAlphabets: false,
     specialChars: false,
     lowerCaseAlphabets: false,
     digits: true,
-  });
+  });*/
   //console.log(otp);
   const gendate = moment()
   console.log(gendate)
