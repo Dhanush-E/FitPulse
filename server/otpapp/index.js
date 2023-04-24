@@ -41,12 +41,12 @@ const sendOTP = async (otp, mobileNumber) => {
 //CURD Operations
 app.post("/sendotp", async (req, res) => {
   const { mobileNumber } = req.body;
-  const otp = otpGenerator.generate(6, {
+  const otp =  generateOTP(6)/*otpGenerator.generate(6, {
     upperCaseAlphabets: false,
     specialChars: false,
     lowerCaseAlphabets: false,
     digits: true,
-  });
+  });*/
   //console.log(otp);
   const  gendate = moment()
   console.log(gendate)
