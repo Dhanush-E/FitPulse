@@ -13,8 +13,8 @@ const moment = require('moment');
 app.use(cors({ credentials: true, origin: "http://localhost:3000" })); //Cross-origin resource sharing 
 app.use(cookieparser());
 
-const authToken = "aa8c5445962df94338499e6897f0ed5b"//"38c2b334a856647b277bb3c453c96db9"; // my Auth Token from www.twilio.com/console
-const accountSid = "AC542564cbc3fe605918c147ceb40e075f"//"AC196157eb740751fafd18c37842b2377d"; //deatils of twilio
+const authToken = "twilo auth token"
+const accountSid = "twilo account sid"
 
 const client = require("twilio")(accountSid, authToken);
 
@@ -26,7 +26,7 @@ const sendOTP = async (otp, mobileNumber) => {
   client.messages
     .create({
       body: `Verify OTP ${otp}`,
-      messagingServiceSid: "MG3469e8deb26d744a62d48649e836ebb3",//"MG4cbb198c04d07178596a6c5d8a30e7ed",
+      messagingServiceSid: "twilo msg sid",
       to: "+91" + mobileNumber,
     })
     .then((message) => console.log(message.sid));
